@@ -12,7 +12,7 @@ const AllProduct = () => {
 
     const getApiData = async (page) => {
         try {
-            const res = await axios.get(`http://localhost:8000/api/cinemaimport?page=${page}&limit=50`);
+            const res = await axios.get(`https://mediamanserver.onrender.com/api/cinemaimport?page=${page}&limit=50`);
             console.log(res.data.data)
             if (res.status === 200) {
                 setData(res.data.data);
@@ -28,7 +28,7 @@ const AllProduct = () => {
         const userInput = window.confirm("Are you sure you want to delete all records?")
         if (userInput) {
             try {
-                const res = await axios.delete("http://localhost:8000/api/deleterecord/" + _id);
+                const res = await axios.delete("https://mediamanserver.onrender.com/api/deleterecord/" + _id);
                 if (res.status === 200) {
                     toast.success("Cinema deleted Successfully");
                     getApiData(currentPage);
@@ -43,7 +43,7 @@ const AllProduct = () => {
         const userInput = window.confirm("Are you sure you want to delete all records?")
         if (userInput) {
             try {
-                const res = await axios.post("http://localhost:8000/api/deleteallcinema")
+                const res = await axios.post("https://mediamanserver.onrender.com/api/deleteallcinema")
                 if (res.status === 200) {
                     getApiData(currentPage)
                 }

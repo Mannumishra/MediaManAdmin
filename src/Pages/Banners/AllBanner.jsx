@@ -10,7 +10,7 @@ const AllBanner = () => {
 
     const getApiData = async () => {
         try {
-            const res = await axios.get("http://localhost:8000/api/hoading")
+            const res = await axios.get("https://mediamanserver.onrender.com/api/hoading")
             console.log(res)
             if (res.status === 200) {
                 setData(res.data.data.reverse())
@@ -24,7 +24,7 @@ const AllBanner = () => {
         const userConfirmed = window.confirm("Are you sure you want to delete this records?")
         if (userConfirmed) {
             try {
-                const res = await axios.delete("http://localhost:8000/api/hoading/" + _id)
+                const res = await axios.delete("https://mediamanserver.onrender.com/api/hoading/" + _id)
                 if (res.status === 200) {
                     toast.success("Hoading Delete successfully")
                     getApiData()
@@ -39,7 +39,7 @@ const AllBanner = () => {
         const userConfirmed = window.confirm("Are you sure you want to delete all records?");
         if (userConfirmed) {
             try {
-                const res = await axios.post("http://localhost:8000/api/deleteallhoading");
+                const res = await axios.post("https://mediamanserver.onrender.com/api/deleteallhoading");
                 if (res.status === 200) {
                     getApiData();
                 }

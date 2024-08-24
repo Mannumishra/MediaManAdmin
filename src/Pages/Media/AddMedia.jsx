@@ -30,7 +30,7 @@ const AddMedia = () => {
             formData.append("medianame", data.medianame);
             formData.append("image", data.image);
 
-            const res = await axios.post("http://localhost:8000/api/media", formData);
+            const res = await axios.post("https://mediamanserver.onrender.com/api/media", formData);
            if(res.status===200){
             setIsLoading(false);
             toast.success("Cinema added successfully!");

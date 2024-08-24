@@ -31,8 +31,8 @@ const EditBanner = () => {
         const fetchStatesAndCities = async () => {
             try {
                 const [statesResponse, citiesResponse] = await Promise.all([
-                    axios.get('http://localhost:8000/api/state'),
-                    axios.get('http://localhost:8000/api/city'),
+                    axios.get('https://mediamanserver.onrender.com/api/state'),
+                    axios.get('https://mediamanserver.onrender.com/api/city'),
                 ]);
 
                 if (statesResponse.data.success) {
@@ -64,7 +64,7 @@ const EditBanner = () => {
     useEffect(() => {
         const fetchBanner = async () => {
             try {
-                const response = await axios.get(`http://localhost:8000/api/hoading/${_id}`);
+                const response = await axios.get(`https://mediamanserver.onrender.com/api/hoading/${_id}`);
                 const { state, city, location, media, width, height, sft, unitType, rpm, flexInstallation, total } = response.data.data;
                 setFormData({ state, city, location, media, width, height, sft, unitType, rpm, flexInstallation, total, image: null });
             } catch (error) {
@@ -114,7 +114,7 @@ const EditBanner = () => {
         }
 
         try {
-            const response = await axios.put(`http://localhost:8000/api/hoading/${_id}`, formDataToSend, {
+            const response = await axios.put(`https://mediamanserver.onrender.com/api/hoading/${_id}`, formDataToSend, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },

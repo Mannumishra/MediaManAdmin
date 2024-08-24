@@ -30,7 +30,7 @@ const AddCategory = () => {
             formData.append("categoryName", data.categoryName);
             formData.append("image", data.image);
 
-            const res = await axios.post("http://localhost:8000/api/create-cinema", formData);
+            const res = await axios.post("https://mediamanserver.onrender.com/api/create-cinema", formData);
            if(res.status===200){
             setIsLoading(false);
             toast.success("Cinema added successfully!");

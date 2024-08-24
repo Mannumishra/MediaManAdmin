@@ -30,8 +30,8 @@ const AddmanualHoading = () => {
         const fetchStatesAndCities = async () => {
             try {
                 const [statesResponse, citiesResponse] = await Promise.all([
-                    axios.get('http://localhost:8000/api/state'),
-                    axios.get('http://localhost:8000/api/city'),
+                    axios.get('https://mediamanserver.onrender.com/api/state'),
+                    axios.get('https://mediamanserver.onrender.com/api/city'),
                 ]);
 
                 if (statesResponse.data.success) {
@@ -69,7 +69,7 @@ const AddmanualHoading = () => {
         setIsLoading(true);
 
         try {
-            const response = await axios.post('http://localhost:8000/api/manualhoading', formData);
+            const response = await axios.post('https://mediamanserver.onrender.com/api/manualhoading', formData);
             if (response.status === 200) {
                 toast.success(response.data.message);
                 navigate('/all-banners');

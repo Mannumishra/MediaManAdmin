@@ -10,7 +10,7 @@ const AllCategory = () => {
 
     const getApiData = async () => {
         try {
-            const res = await axios.get("http://localhost:8000/api/create-cinema")
+            const res = await axios.get("https://mediamanserver.onrender.com/api/create-cinema")
             console.log(res)
             if (res.status === 200) {
                 const newData = res.data.data
@@ -23,7 +23,7 @@ const AllCategory = () => {
 
     const deleteCinema = async (_id) => {
         try {
-            const res = await axios.delete("http://localhost:8000/api/create-cinema/" + _id)
+            const res = await axios.delete("https://mediamanserver.onrender.com/api/create-cinema/" + _id)
             if (res.status === 200) {
                 toast.success(res.data.message)
                 getApiData()
