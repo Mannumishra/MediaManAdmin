@@ -10,7 +10,7 @@ const SinglePageDetails = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`https://mediamanserver.onrender.com/api/cinemaCart/${_id}`);
+                const response = await axios.get(`http://localhost:8000/api/cinemaCart/${_id}`);
                 console.log(response.data.data); // Check the response structure
                 setData(response.data.data); // Update this according to your API response structure
             } catch (error) {

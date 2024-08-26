@@ -13,7 +13,7 @@ const navigate = useNavigate()
         e.preventDefault()
         try {
             setIsLoading(true)
-            const res = await axios.post("https://mediamanserver.onrender.com/api/category", { name })
+            const res = await axios.post("http://localhost:8000/api/category", { name })
             if(res.status===200){
                 navigate("/all-tags")
                 setIsLoading(false)

@@ -29,7 +29,7 @@ const AddBanner = () => {
         formDataObj.append('file', formData.file);
 
         try {
-            const response = await axios.post('https://mediamanserver.onrender.com/api/hoading', formDataObj, {
+            const response = await axios.post('http://localhost:8000/api/hoading', formDataObj, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },

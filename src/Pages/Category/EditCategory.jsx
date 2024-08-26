@@ -17,7 +17,7 @@ const EditCategory = () => {
     useEffect(() => {
         const fetchCategory = async () => {
             try {
-                const res = await axios.get(`https://mediamanserver.onrender.com/api/create-cinema/${_id}`);
+                const res = await axios.get(`http://localhost:8000/api/create-cinema/${_id}`);
                 console.log(res)
                 const category = res.data.data;
                 setData({
@@ -49,7 +49,7 @@ const EditCategory = () => {
             if (data.image) {
                 formData.append("image", data.image);
             }
-            const res = await axios.put(`https://mediamanserver.onrender.com/api/create-cinema/${_id}`, formData);
+            const res = await axios.put(`http://localhost:8000/api/create-cinema/${_id}`, formData);
             if(res.status===200){
                 toast.success("Category updated successfully!");
                 navigate("/all-category")

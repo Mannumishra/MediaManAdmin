@@ -1,17 +1,36 @@
 import axios from 'axios';
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const AddCategory = () => {
-    const [isLoading, setIsLoading] = useState(false);
+const EditRadioCategory = () => {
+    const [btnLoading, setBtnLoading] = useState(false);
     const [data, setData] = useState({
         categoryName: "",
         image: null
     });
+    const { _id } = useParams();
 
-    const navigate = useNavigate("/all-category")
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        const fetchCategory = async () => {
+            try {
+                const res = await axios.get(`http://localhost:8000/api/radioCategory/${_id}`);
+                console.log(res)
+                const category = res.data.data;
+                setData({
+                    categoryName: category.categoryName,
+                    image: null,
+                });
+            } catch (error) {
+                console.log(error);
+                toast.error("Failed to load category data.");
+            }
+        };
+        fetchCategory();
+    }, [_id]);
 
     const handleChange = (e) => {
         const { name, value, files } = e.target;
@@ -21,34 +40,34 @@ const AddCategory = () => {
         }));
     };
 
-
-    const postData = async (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+        setBtnLoading(true);
         try {
-            setIsLoading(true);
             const formData = new FormData();
             formData.append("categoryName", data.categoryName);
-            formData.append("image", data.image);
-
-            const res = await axios.post("http://localhost:8000/api/create-cinema", formData);
-           if(res.status===200){
-            setIsLoading(false);
-            toast.success("Cinema added successfully!");
-            navigate("/all-category")
-           }
+            if (data.image) {
+                formData.append("image", data.image);
+            }
+            const res = await axios.put(`http://localhost:8000/api/radioCategory/${_id}`, formData);
+            if(res.status===200){
+                toast.success("Category updated successfully!");
+                navigate("/all-category")
+            }
         } catch (error) {
-            setIsLoading(false);
-            toast.error(error.response.data.message);
+            console.log(error);
+            toast.error("Failed to update category.");
+        } finally {
+            setBtnLoading(false);
         }
     };
 
- 
     return (
         <>
             <ToastContainer />
             <div className="bread">
                 <div className="head">
-                    <h4>Add Category</h4>
+                    <h4>Edit Category</h4>
                 </div>
                 <div className="links">
                     <Link to="/all-category" className="add-new">Back <i className="fa-regular fa-circle-left"></i></Link>
@@ -56,9 +75,9 @@ const AddCategory = () => {
             </div>
 
             <div className="d-form">
-                <form className="row g-3" onSubmit={postData}>
+                <form className="row g-3" onSubmit={handleSubmit}>
                     <div className="col-md-6">
-                        <label htmlFor="categoryName" className="form-label">Cinema Name<sup className='text-danger'>*</sup></label>
+                        <label htmlFor="categoryName" className="form-label">Category Name</label>
                         <input
                             type="text"
                             name="categoryName"
@@ -69,7 +88,7 @@ const AddCategory = () => {
                         />
                     </div>
                     <div className="col-md-6">
-                        <label htmlFor="categoryImage" className="form-label">Cinema Image<sup className='text-danger'>*</sup></label>
+                        <label htmlFor="categoryImage" className="form-label">Category Image</label>
                         <input
                             type="file"
                             name="image"
@@ -81,10 +100,10 @@ const AddCategory = () => {
                     <div className="col-12 text-center">
                         <button
                             type="submit"
-                            disabled={isLoading}
-                            className={`${isLoading ? 'not-allowed' : 'allowed'}`}
+                            className={`${btnLoading ? 'not-allowed' : 'allowed'}`}
+                            disabled={btnLoading}
                         >
-                            {isLoading ? "Please Wait..." : "Add Cinema"}
+                            {btnLoading ? "Please Wait.." : "Update Category"}
                         </button>
                     </div>
                 </form>
@@ -93,4 +112,4 @@ const AddCategory = () => {
     );
 };
 
-export default AddCategory;
+export default EditRadioCategory;

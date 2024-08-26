@@ -16,7 +16,7 @@ const EditCity = () => {
 
     const getAllStates = async () => {
         try {
-            const res = await axios.get("https://mediamanserver.onrender.com/api/state");
+            const res = await axios.get("http://localhost:8000/api/state");
             if (res.status === 200) {
                 setAllState(res.data.data.reverse());
             }
@@ -28,7 +28,7 @@ const EditCity = () => {
 
     const getCityData = async () => {
         try {
-            const res = await axios.get("https://mediamanserver.onrender.com/api/city/" + _id);
+            const res = await axios.get("http://localhost:8000/api/city/" + _id);
             if (res.status === 200) {
                 setData({
                     state: res.data.data.state,
@@ -49,7 +49,7 @@ const EditCity = () => {
         e.preventDefault();
         setBtnLoading(true);
         try {
-            const res = await axios.put("https://mediamanserver.onrender.com/api/city/" + _id, data);
+            const res = await axios.put("http://localhost:8000/api/city/" + _id, data);
             if (res.status === 200) {
                 toast.success(res.data.message);
                 navigate("/all-city");

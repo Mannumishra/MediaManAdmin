@@ -10,7 +10,7 @@ const AllState = () => {
 
     const getApiData = async () => {
         try {
-            const res = await axios.get("https://mediamanserver.onrender.com/api/state")
+            const res = await axios.get("http://localhost:8000/api/state")
             if (res.status === 200) {
                 const newData = res.data.data
                 setData(newData.reverse())
@@ -22,7 +22,7 @@ const AllState = () => {
 
     const deleteRecord = async(_id)=>{
         try {
-            const res = await axios.delete("https://mediamanserver.onrender.com/api/state/"+_id)
+            const res = await axios.delete("http://localhost:8000/api/state/"+_id)
             if(res.status===200){
                 toast.success(res.data.message)
                 getApiData()

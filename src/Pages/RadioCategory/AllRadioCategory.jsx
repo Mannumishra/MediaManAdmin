@@ -5,12 +5,13 @@ import Swal from 'sweetalert2';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const AllTags = () => {
+const AllRadioCategory = () => {
     const [data, setData] = useState([])
 
     const getApiData = async () => {
         try {
-            const res = await axios.get("http://localhost:8000/api/category")
+            const res = await axios.get("http://localhost:8000/api/radioCategory")
+            console.log(res)
             if (res.status === 200) {
                 const newData = res.data.data
                 setData(newData.reverse())
@@ -20,19 +21,17 @@ const AllTags = () => {
         }
     }
 
-    const deleteRecord = async(_id)=>{
+    const deleteCinema = async (_id) => {
         try {
-            const res = await axios.delete("http://localhost:8000/api/category/"+_id)
-            if(res.status===200){
+            const res = await axios.delete("http://localhost:8000/api/radioCategory/" + _id)
+            if (res.status === 200) {
                 toast.success(res.data.message)
                 getApiData()
             }
         } catch (error) {
             console.log(error)
-            toast.success(error.data.message)
         }
     }
-
     useEffect(() => {
         getApiData()
     }, [data.length])
@@ -41,10 +40,10 @@ const AllTags = () => {
             <ToastContainer />
             <div className="bread">
                 <div className="head">
-                    <h4>All Category </h4>
+                    <h4>All Station Name</h4>
                 </div>
                 <div className="links">
-                    <Link to="/add-tag" className="add-new">Add New <i class="fa-solid fa-plus"></i></Link>
+                    <Link to="/add-radiosname" className="add-new">Add New <i class="fa-solid fa-plus"></i></Link>
                 </div>
             </div>
 
@@ -66,27 +65,30 @@ const AllTags = () => {
                     <thead>
                         <tr>
                             <th scope="col">Sr.No.</th>
-                            <th scope="col">Category Name</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Image</th>
                             <th scope="col">Edit</th>
                             <th scope="col">Delete</th>
                         </tr>
                     </thead>
                     <tbody>
                         {
-                            data.map((item,index) =>
+                            data.map((item, index) =>
                                 <tr key={index}>
-                                    <th scope="row">{index+1}</th>
-                                    <td>{item.name}</td>
-                                    <td><Link className="bt edit" to={`/edit-tag/${item._id}`}>Edit <i class="fa-solid fa-pen-to-square"></i></Link></td>
-                                    <td><Link className="bt delete" onClick={()=>{deleteRecord(item._id)}}>Delete <i class="fa-solid fa-trash"></i></Link></td>
+                                    <th scope="row">{index + 1}</th>
+                                    <td>{item.radiocategoryName}</td>
+                                    <td><img src={item.radioimage} /></td>
+                                    <td><Link className="bt edit" to={`/edit-category/${item._id}`}>Edit <i class="fa-solid fa-pen-to-square"></i></Link></td>
+                                    <td><Link className="bt delete" onClick={() => deleteCinema(item._id)}>Delete <i class="fa-solid fa-trash"></i></Link></td>
                                 </tr>
                             )
                         }
                     </tbody>
+
                 </table>
             </section>
         </>
     )
 }
 
-export default AllTags
+export default AllRadioCategory

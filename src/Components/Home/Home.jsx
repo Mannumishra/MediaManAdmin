@@ -35,6 +35,13 @@ import AllMedia from '../../Pages/Media/AllMedia'
 import AddMedia from '../../Pages/Media/AddMedia'
 import EditMedia from '../../Pages/Media/EditMedia'
 import SinglePageDtata from '../../Pages/Orders/SinglePageDtata'
+import AllRadioCategory from '../../Pages/RadioCategory/AllRadioCategory'
+import AddRadioCategory from '../../Pages/RadioCategory/AddRadioCategory'
+import EditRadioCategory from '../../Pages/RadioCategory/EditRadioCategory'
+import AllRadio from '../../Pages/Radio/AllRadio'
+import AddRadio from '../../Pages/Radio/AddRadio'
+import AllRadioQuery from '../../Pages/RadioQuery/AllRadioQuery'
+import SinglePageDtataRadio from '../../Pages/RadioQuery/SinglePageDtataRadio'
 
 const Home = () => {
   return (
@@ -89,14 +96,21 @@ const Home = () => {
           <Route path={"/add-banner/manual"} element={<AddmanualHoading />} />
 
           {/* --- Banners --- */}
-          <Route path={"/all-shop-banners"} element={<AllShopBanner />} />
-          <Route path={"/add-shop-banner"} element={<AddShopBanner />} />
-          <Route path={"/edit-shop-banner/:id"} element={<EditShopBanner />} />
+          <Route path={"/all-radiosname"} element={<AllRadioCategory />} />
+          <Route path={"/add-radiosname"} element={<AddRadioCategory />} />
+          <Route path={"/edit-radiosname/:_id"} element={<EditRadioCategory />} />
+
+
+          <Route path={"/all-radio"} element={<AllRadio />} />
+          <Route path={"/add-radio"} element={<AddRadio />} />
 
           {/* --- Orders --- */}
           <Route path={"/all-orders"} element={<AllOrder />} />
           <Route path={"/single-data/:_id"} element={<SinglePageDtata />} />
-        
+
+          <Route path={"/all-radios"} element={<AllRadioQuery />} />
+          <Route path={"/single-data-radio/:_id"} element={<SinglePageDtataRadio />} />
+
 
 
 

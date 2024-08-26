@@ -5,12 +5,12 @@ import Swal from 'sweetalert2';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const AllOrder = () => {
+const AllRadioQuery = () => {
     const [data, setData] = useState([])
 
     const getApiData = async () => {
         try {
-            const res = await axios.get("http://localhost:8000/api/hoadingcart")
+            const res = await axios.get("http://localhost:8000/api/radio-cart")
             console.log(res)
             if (res.status === 200) {
                 setData(res.data.data.reverse())
@@ -71,7 +71,7 @@ const AllOrder = () => {
                                         <td>{item.state}</td>
                                         <td>{item.message}</td>
                                         <td>{new Date(item.createdAt).toLocaleDateString()}</td>
-                                        <td><Link className='btn btn-success' to={`/single-data/${item._id}`}>View Enquery</Link></td>
+                                        <td><Link className='btn btn-success' to={`/single-data-radio/${item._id}`}>View Enquery</Link></td>
                                     </tr>
                                 )
                             }
@@ -82,4 +82,4 @@ const AllOrder = () => {
     );
 };
 
-export default AllOrder;
+export default AllRadioQuery;

@@ -28,7 +28,7 @@
   
   .details-card img.details-image {
     width: 100%;
-    height: 100px;
+    height: auto;
   }
   
   .details-info {
