@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import './SinglePageDtata.css'; // Import your CSS file for styles
+import './SinglePageDtata.css';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
@@ -21,13 +21,36 @@ const SinglePageDtata = () => {
         fetchData();
     }, [_id]);
 
+    // const handlePrint = () => {
+    //     const printWindow = window.open('', '', 'height=600,width=800');
+    //     printWindow.document.write('<html><head><title>Print</title>');
+    //     printWindow.document.write('<style>/* Add your styles here */</style>');
+    //     printWindow.document.write('</head><body >');
+    //     printWindow.document.write(document.querySelector('.details-container').innerHTML);
+    //     printWindow.document.write('</body></html>');
+    //     printWindow.document.close();
+    //     printWindow.focus();
+    //     printWindow.print();
+    // };
+
     if (!data) {
         return <p>Loading...</p>;
     }
 
     return (
         <div className="details-container">
-            <h1 className="details-title">Hoading Cart Details</h1>
+            <h4 className="details-title">Hoading Cart Details</h4>
+            {/* <button onClick={handlePrint} className="print-button">Print Details</button> */}
+            {/* <div className="user-details">
+                <h2>User Details</h2>
+                    <div>
+                        <p><strong>Name:</strong> {data.name}</p>
+                        <p><strong>Email:</strong> {data.email}</p>
+                        <p><strong>Phone:</strong> {data.phone}</p>
+                        <p><strong>State:</strong> {data.state}</p>
+                        <p><strong>Date:</strong> {data.date}</p>
+                    </div>
+            </div> */}
             <div className="details-content">
                 {data.hoadingcart && data.hoadingcart.length > 0 ? (
                     data.hoadingcart.map((item, index) => (

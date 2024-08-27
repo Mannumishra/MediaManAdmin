@@ -13,16 +13,20 @@ const AllProduct = () => {
     const getApiData = async (page) => {
         try {
             const res = await axios.get(`http://localhost:8000/api/cinemaimport?page=${page}&limit=50`);
-            console.log(res.data.data)
             if (res.status === 200) {
-                setData(res.data.data);
-                setCurrentPage(res.data.currentPage);
-                setTotalPages(res.data.totalPages);
+                if (res.data.data.length === 0 && page > 1) {
+                    setCurrentPage(page - 1);
+                } else {
+                    setData(res.data.data);
+                    setCurrentPage(res.data.currentPage);
+                    setTotalPages(res.data.totalPages);
+                }
             }
         } catch (error) {
             console.log(error);
         }
     }
+    
 
     const deleteRecord = async (_id) => {
         const userInput = window.confirm("Are you sure you want to delete all records?")
@@ -43,31 +47,37 @@ const AllProduct = () => {
         const userInput = window.confirm("Are you sure you want to delete all records?")
         if (userInput) {
             try {
-                const res = await axios.post("http://localhost:8000/api/deleteallcinema")
+                const res = await axios.delete("http://localhost:8000/api/deleteallcinema");
                 if (res.status === 200) {
-                    getApiData(currentPage)
+                    setCurrentPage(1); // Reset to the first page
+                    setData([]); // Clear the data immediately
+                    setTotalPages(0); // Reset total pages
+                    getApiData(1); // Fetch data for the first page
+                    toast.success("All records deleted successfully");
                 }
             } catch (error) {
-                console.log(error)
+                console.log(error);
             }
         }
     }
-
-    useEffect(() => {
-        getApiData(currentPage);
-    }, [currentPage]);
+    
+    
 
     const handleNextPage = () => {
         if (currentPage < totalPages) {
             setCurrentPage(currentPage + 1);
         }
     }
-
+    
     const handlePrevPage = () => {
         if (currentPage > 1) {
             setCurrentPage(currentPage - 1);
         }
     }
+    
+    useEffect(() => {
+        getApiData(currentPage);
+    }, [currentPage]);
 
     return (
         <>

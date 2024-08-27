@@ -1,5 +1,5 @@
 .details-container {
-    padding: 20px;
+  padding: 0px 20px;
     max-width: 1200px;
     margin: 0 auto;
   }
@@ -12,7 +12,7 @@
   .details-content {
     display: flex;
     flex-wrap: wrap;
-    gap: 0px;
+    gap: 10px;
   }
   
   .details-card {
@@ -28,7 +28,7 @@
   
   .details-card img.details-image {
     width: 100%;
-    height: auto;
+    height: 100px;
   }
   
   .details-info {
@@ -36,7 +36,7 @@
   }
   
   .details-info p {
-    margin: 10px 0;
+    margin: 0px 0 !important;
   }
   
   .details-info h2.details-cinema {

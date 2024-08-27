@@ -27,7 +27,7 @@ const SinglePageDtataRadio = () => {
 
     return (
         <div className="details-container">
-            <h1 className="details-title">Radio Cart Details</h1>
+            <h4 className="details-title">Radio Cart Details</h4>
             <div className="details-content">
                 {data.radiocart && data.radiocart.length > 0 ? (
                     data.radiocart.map((item, index) => (

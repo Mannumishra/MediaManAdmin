@@ -28,7 +28,7 @@ const SinglePageDetails = () => {
 
     return (
         <div className="details-container">
-            <h1 className="details-title">Cinema Cart Details</h1>
+            <h4 className="details-title">Cinema Cart Details</h4>
             <div className="details-content">
                 {data.item && data.item.length > 0 ? (
                     data.item.map((item, index) => (
