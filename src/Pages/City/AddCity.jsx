@@ -15,7 +15,7 @@ const AddCity = () => {
 
     const getstatedata = async()=>{
         try {
-            const res = await axios.get("http://localhost:8000/api/state")
+            const res = await axios.get("https://mediamanserver.onrender.com/api/state")
             if(res.status===200){
                 const newData = res.data.data 
                 setAllstate(newData.reverse())
@@ -33,7 +33,7 @@ const AddCity = () => {
         e.preventDefault()
         try {
             setIsLoading(true)
-            const res = await axios.post("http://localhost:8000/api/city", data)
+            const res = await axios.post("https://mediamanserver.onrender.com/api/city", data)
             if (res.status === 200) {
                 navigate("/all-city")
                 setIsLoading(false)

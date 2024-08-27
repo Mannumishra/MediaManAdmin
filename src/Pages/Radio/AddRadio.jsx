@@ -29,7 +29,7 @@ const AddRadio = () => {
         formDataObj.append('file', formData.file);
 
         try {
-            const response = await axios.post('http://localhost:8000/api/radio', formDataObj, {
+            const response = await axios.post('https://mediamanserver.onrender.com/api/radio', formDataObj, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },

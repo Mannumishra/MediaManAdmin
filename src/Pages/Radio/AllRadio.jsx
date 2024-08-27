@@ -10,7 +10,7 @@ const AllRadio = () => {
 
     const getApiData = async () => {
         try {
-            const res = await axios.get("http://localhost:8000/api/allradio")
+            const res = await axios.get("https://mediamanserver.onrender.com/api/allradio")
             console.log(res)
             if (res.status === 200) {
                 setData(res.data.data.reverse())
@@ -24,7 +24,7 @@ const AllRadio = () => {
         const userConfirmed = window.confirm("Are you sure you want to delete this records?")
         if (userConfirmed) {
             try {
-                const res = await axios.delete("http://localhost:8000/api/allradio/" + _id)
+                const res = await axios.delete("https://mediamanserver.onrender.com/api/allradio/" + _id)
                 if (res.status === 200) {
                     toast.success("allradio Delete successfully")
                     getApiData()
@@ -39,7 +39,7 @@ const AllRadio = () => {
         const userConfirmed = window.confirm("Are you sure you want to delete all records?");
         if (userConfirmed) {
             try {
-                const res = await axios.delete("http://localhost:8000/api/radiodeletemany");
+                const res = await axios.delete("https://mediamanserver.onrender.com/api/radiodeletemany");
                 if (res.status === 200) {
                     getApiData();
                 }

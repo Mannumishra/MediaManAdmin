@@ -39,7 +39,7 @@ const AddBlog = () => {
             formData.append("image", data.image);
             formData.append("blogDescription", data.blogDescription);
 
-            const res = await axios.post("http://localhost:8000/api/blog", formData);
+            const res = await axios.post("https://mediamanserver.onrender.com/api/blog", formData);
             console.log(res)
             if (res.status === 200) {
                 setIsLoading(false);

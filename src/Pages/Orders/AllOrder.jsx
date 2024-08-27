@@ -10,7 +10,7 @@ const AllOrder = () => {
 
     const getApiData = async () => {
         try {
-            const res = await axios.get("http://localhost:8000/api/hoadingcart")
+            const res = await axios.get("https://mediamanserver.onrender.com/api/hoadingcart")
             console.log(res)
             if (res.status === 200) {
                 setData(res.data.data.reverse())

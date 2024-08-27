@@ -30,7 +30,7 @@ const AddRadioCategory = () => {
             formData.append("radiocategoryName", data.radiocategoryName);
             formData.append("radioimage", data.radioimage);
 
-            const res = await axios.post("http://localhost:8000/api/radioCategory", formData);
+            const res = await axios.post("https://mediamanserver.onrender.com/api/radioCategory", formData);
            if(res.status===200){
             setIsLoading(false);
             toast.success("Cinema added successfully!");

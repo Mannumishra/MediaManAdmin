@@ -30,7 +30,7 @@ const EditCinema = () => {
     // Fetch existing cinema details
     const getCinemaDetails = async () => {
         try {
-            const res = await axios.get(`http://localhost:8000/api/cinemaimport/${_id}`);
+            const res = await axios.get(`https://mediamanserver.onrender.com/api/cinemaimport/${_id}`);
             console.log(res)
             if (res.status === 200) {
                 setFormData(res.data.data);
@@ -43,7 +43,7 @@ const EditCinema = () => {
 
     const getCategoryData = async () => {
         try {
-            const res = await axios.get("http://localhost:8000/api/category");
+            const res = await axios.get("https://mediamanserver.onrender.com/api/category");
             if (res.status === 200) {
                 setCategories(res.data.data.reverse());
             }
@@ -54,7 +54,7 @@ const EditCinema = () => {
 
     const getStateData = async () => {
         try {
-            const res = await axios.get("http://localhost:8000/api/state");
+            const res = await axios.get("https://mediamanserver.onrender.com/api/state");
             if (res.status === 200) {
                 setStates(res.data.data.reverse());
             }
@@ -65,7 +65,7 @@ const EditCinema = () => {
 
     const getApiData = async (selectedState = formData.state) => {
         try {
-            const res = await axios.get("http://localhost:8000/api/city");
+            const res = await axios.get("https://mediamanserver.onrender.com/api/city");
             if (res.status === 200) {
                 const filteredCities = selectedState ? res.data.data.filter(city => city.state === selectedState) : [];
                 setCities(filteredCities.reverse());
@@ -77,7 +77,7 @@ const EditCinema = () => {
 
     const getCinemaData = async () => {
         try {
-            const res = await axios.get("http://localhost:8000/api/create-cinema");
+            const res = await axios.get("https://mediamanserver.onrender.com/api/create-cinema");
             if (res.status === 200) {
                 setCinemas(res.data.data.reverse());
             }
@@ -110,7 +110,7 @@ const EditCinema = () => {
         });
 
         try {
-            const res = await axios.put(`http://localhost:8000/api/updatecinema/${_id}`, formDataToSend);
+            const res = await axios.put(`https://mediamanserver.onrender.com/api/updatecinema/${_id}`, formDataToSend);
             if (res.status === 200) {
                 toast.success('Cinema updated successfully');
                 navigate("/all-products");

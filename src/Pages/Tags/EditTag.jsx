@@ -12,7 +12,7 @@ const EditTag = () => {
     const { _id } = useParams()
     const getApiData = async () => {
         try {
-            const res = await axios.get("http://localhost:8000/api/category/" + _id)
+            const res = await axios.get("https://mediamanserver.onrender.com/api/category/" + _id)
             if (res.status === 200) {
                 setName(res.data.data.name)
             }
@@ -24,7 +24,7 @@ const EditTag = () => {
         setBtnLoading(true)
         e.preventDefault()
         try {
-            const res = await axios.put("http://localhost:8000/api/category/" + _id, { name })
+            const res = await axios.put("https://mediamanserver.onrender.com/api/category/" + _id, { name })
             if (res.status === 200) {
                 toast.success(res.data.message)
                 navigate("/all-tags")

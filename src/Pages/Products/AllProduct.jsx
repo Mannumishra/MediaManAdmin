@@ -12,7 +12,7 @@ const AllProduct = () => {
 
     const getApiData = async (page) => {
         try {
-            const res = await axios.get(`http://localhost:8000/api/cinemaimport?page=${page}&limit=50`);
+            const res = await axios.get(`https://mediamanserver.onrender.com/api/cinemaimport?page=${page}&limit=50`);
             if (res.status === 200) {
                 if (res.data.data.length === 0 && page > 1) {
                     setCurrentPage(page - 1);
@@ -32,7 +32,7 @@ const AllProduct = () => {
         const userInput = window.confirm("Are you sure you want to delete all records?")
         if (userInput) {
             try {
-                const res = await axios.delete("http://localhost:8000/api/deleterecord/" + _id);
+                const res = await axios.delete("https://mediamanserver.onrender.com/api/deleterecord/" + _id);
                 if (res.status === 200) {
                     toast.success("Cinema deleted Successfully");
                     getApiData(currentPage);
@@ -47,7 +47,7 @@ const AllProduct = () => {
         const userInput = window.confirm("Are you sure you want to delete all records?")
         if (userInput) {
             try {
-                const res = await axios.delete("http://localhost:8000/api/deleteallcinema");
+                const res = await axios.delete("https://mediamanserver.onrender.com/api/deleteallcinema");
                 if (res.status === 200) {
                     setCurrentPage(1); // Reset to the first page
                     setData([]); // Clear the data immediately

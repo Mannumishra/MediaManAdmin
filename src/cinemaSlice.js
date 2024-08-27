@@ -3,12 +3,12 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 export const fetchCinemas = createAsyncThunk('cinema/fetchCinemas', async () => {
-  const response = await axios.get("http://localhost:8000/api/cinemaimport");
+  const response = await axios.get("https://mediamanserver.onrender.com/api/cinemaimport");
   return response.data.data.reverse();
 });
 
 export const deleteCinema = createAsyncThunk('cinema/deleteCinema', async (id) => {
-  await axios.delete(`http://localhost:8000/api/cinemaimport/${id}`);
+  await axios.delete(`https://mediamanserver.onrender.com/api/cinemaimport/${id}`);
   return id;
 });
 
