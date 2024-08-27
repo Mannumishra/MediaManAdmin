@@ -42,6 +42,10 @@ import AllRadio from '../../Pages/Radio/AllRadio'
 import AddRadio from '../../Pages/Radio/AddRadio'
 import AllRadioQuery from '../../Pages/RadioQuery/AllRadioQuery'
 import SinglePageDtataRadio from '../../Pages/RadioQuery/SinglePageDtataRadio'
+import AllQuery from '../../Pages/Query/AllQuery'
+import AllBlog from '../../Pages/Blog/AllBlog'
+import AddBlog from '../../Pages/Blog/AddBlog'
+import EditBlog from '../../Pages/Blog/EditBlog'
 
 const Home = () => {
   return (
@@ -110,6 +114,15 @@ const Home = () => {
 
           <Route path={"/all-radios"} element={<AllRadioQuery />} />
           <Route path={"/single-data-radio/:_id"} element={<SinglePageDtataRadio />} />
+
+
+          <Route path={"/all-blog"} element={<AllBlog />} />
+          <Route path={"/add-blog"} element={<AddBlog />} />
+          <Route path={"/edit-blog/:_id"} element={<EditBlog />} />
+
+
+          <Route path={"/all-query"} element={<AllQuery />} />
+
 
 
 
